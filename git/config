@@ -1,0 +1,24 @@
+[user]
+        name = Tateishi Tadatoshi
+        email = ishio39@gmail.com
+
+[core]
+        editor = vim -c \"set fenc=utf-8\"
+        quotepath = false
+        excludesfile = ~/.dotfiles/git/ignore
+
+[alias]
+        co = checkout
+        ci = commit
+
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+
+[push]
+        default = simple
+
+[credential]
+        username = tadatoshi
+        helper = cache --timeout 86400

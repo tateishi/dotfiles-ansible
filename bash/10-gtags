@@ -1,0 +1,4 @@
+# -*- mode: sh; coding: utf-8 -*-
+
+export GTAGSCONF=~/.config/gtags/gtags.conf
+export GTAGSLABEL=ctags

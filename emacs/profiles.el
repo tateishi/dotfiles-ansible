@@ -1,0 +1,6 @@
+(("default"   . ((user-emacs-directory . "~/.emacs.d")))
+ ("prelude"   . ((user-emacs-directory . "~/.emacsen/prelude")))
+ ("spacemacs" . ((user-emacs-directory . "~/.emacsen/spacemacs")))
+ ("vanilla"   . ((user-emacs-directory . "~/.emacsen/vanilla")))
+ ("ccmode"    . ((user-emacs-directory . "~/.emacsen/ccmode")))
+ ("test"      . ((user-emacs-directory . "~/.emacsen/test"))))

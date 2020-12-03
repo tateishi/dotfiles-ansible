@@ -1,0 +1,40 @@
+# -*- mode: bash -*-
+
+# bash
+alias pd=pushd
+alias dirs='dirs -v'
+
+# tmux
+#alias tm='tmux attach || tmux new-session'
+
+TMUX_DEFAULT_SESSION=default
+
+function tm () {
+    if [ -n "${1}" ]; then
+        tmux attach -t ${1} || tmux new -s ${1}
+    else
+        tmux attach -t ${TMUX_DEFAULT_SESSION} || tmux new -s ${TMUX_DEFAULT_SESSION}
+    fi
+}
+
+# emacsclient
+alias em='emacsclient -t -a ""'
+
+# dvtm
+alias wm='dtach -A tmp/dtach-dvtm -r winch -z dvtm -m ^t'
+
+# docker
+alias dc='docker-compose'
+
+DOCKER_DEFAULT_SERVICE=default
+
+function dcsh () {
+    if [ -n "${1}" ]; then
+        docker-compose exec ${1} bash
+    else
+        docker-compose exec ${DOCKER_DEFAULT_SERVICE} bash
+    fi
+}
+
+# multipass
+alias mp='multipass'
