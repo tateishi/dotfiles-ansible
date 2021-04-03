@@ -1,3 +1,14 @@
+# -*- mode: sh; coding: utf-8 -*-
+
 export TERM=xterm-256color
 export PATH=~/.local/bin:${PATH}
+export CLICOLOR_FORCE=1
 
+# less
+export LESS='-R -N'
+
+# source highlight
+SRC_HILITE_LESSPIPE=/usr/share/source-highlight/src-hilite-lesspipe.sh
+if [ -x ${SRC_HILITE_LESSPIPE} ]; then
+    export LESSOPEN="| ${SRC_HILITE_LESSPIPE} %s"
+fi

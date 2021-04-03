@@ -1,11 +1,18 @@
-# -*- mode: bash -*-
+# -*- mode: sh; coding: utf-8 -*-
 
 # bash
 alias pd=pushd
 alias dirs='dirs -v'
 
+# ls
+alias ls='ls --color=always'
+
+# grep
+alias grep='grep --color==always'
+alias fgrep='fgrep --color==always'
+alias egrep='egrep --color==always'
+
 # tmux
-#alias tm='tmux attach || tmux new-session'
 
 TMUX_DEFAULT_SESSION=default
 
@@ -38,3 +45,6 @@ function dcsh () {
 
 # multipass
 alias mp='multipass'
+
+# man
+alias man='MANWIDTH=$(($(tput cols) - 10)) man $*'
