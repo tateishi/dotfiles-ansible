@@ -21,4 +21,4 @@
 
 [credential]
         username = tadatoshi
-        helper = cache --timeout 86400
+        helper = cache --timeout 604800
