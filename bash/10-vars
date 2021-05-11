@@ -12,3 +12,7 @@ SRC_HILITE_LESSPIPE=/usr/share/source-highlight/src-hilite-lesspipe.sh
 if [ -x ${SRC_HILITE_LESSPIPE} ]; then
     export LESSOPEN="| ${SRC_HILITE_LESSPIPE} %s"
 fi
+
+# local vars
+LOCAL_VARS=~/.local-vars
+[ -f ${LOCAL_VARS} ] && source ${LOCAL_VARS}

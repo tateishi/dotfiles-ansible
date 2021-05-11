@@ -1,9 +1,0 @@
-# -*- mode: sh; coding: utf-8 -*-
-
-if [ `hostname` = 'system6078' ]; then
-    export proxy=http://proxy.tokai-tv.co.jp:8080/
-    export http_proxy=${proxy}
-    export https_proxy=${proxy}
-    export HTTP_PROXY=${proxy}
-    export HTTPS_PROXY=${proxy}
-fi
