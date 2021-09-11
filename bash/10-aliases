@@ -12,6 +12,12 @@ alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
 
+# ag
+alias ag='ag --pager="less -n"'
+
+# diff
+alias diff='diff --color=always'
+
 # tmux
 
 TMUX_DEFAULT_SESSION=default
