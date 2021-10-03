@@ -20,14 +20,8 @@ alias diff='diff --color=always'
 
 # tmux
 
-TMUX_DEFAULT_SESSION=default
-
-function tm () {
-    if [ -n "${1}" ]; then
-        tmux attach -t ${1} || tmux new -s ${1}
-    else
-        tmux attach -t ${TMUX_DEFAULT_SESSION} || tmux new -s ${TMUX_DEFAULT_SESSION}
-    fi
+function tm {
+    tmux new-session -A -s ${1:-default}
 }
 
 # emacsclient
