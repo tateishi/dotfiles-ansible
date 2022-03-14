@@ -1,0 +1,11 @@
+# -*- mode: sh; coding: utf-8 -*-
+
+
+data_dir="${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion.d"
+
+
+if [[ -d ${data_dir} && -r ${data_dir} && -x ${data_dir} ]]; then
+    for item in $( find ${data_dir} -name "*[^~]" | sort ); do
+        [[ -f $item && -r $item ]] && . ${item}
+    done
+fi
