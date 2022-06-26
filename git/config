@@ -6,6 +6,7 @@
         editor = vim -c \"set fenc=utf-8\"
         quotepath = false
         excludesfile = ~/.dotfiles/git/ignore
+	autocrlf = input
 
 [alias]
         co = checkout
@@ -20,5 +21,4 @@
         default = simple
 
 [credential]
-        username = tadatoshi
-        helper = cache --timeout 604800
+	helper = cache --timeout=86400

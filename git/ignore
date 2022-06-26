@@ -3,3 +3,6 @@ GPATH
 GRTAGS
 GTAGS
 TAGS
+
+# for MacOS
+.DS_Store
