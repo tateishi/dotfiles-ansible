@@ -54,3 +54,6 @@ alias pe=pipenv
 
 # bat
 alias bat='LESS=-R batcat'
+
+# ansible-playbook
+alias ap=ansible-playbook
