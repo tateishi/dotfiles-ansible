@@ -1,0 +1,22 @@
+#! /bin/bash
+
+default_image=ubuntu:22.04
+default_profile=ssh
+
+function lxnew () {
+    name=$1
+    profile=${2:-$default_profile}
+    image=${3:-$default_image}
+
+    lxc init $image -p $profile $name
+}
+
+function lxrun () {
+    name=$1
+
+    lxc start $name && lxc console $name
+}
+
+function lxlist () {
+    lxc list -c ns4tS
+}
