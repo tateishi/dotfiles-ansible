@@ -1,22 +1,46 @@
 #! /bin/bash
 
-default_image=ubuntu:22.04
-default_profile=ssh
-
 function lxnew () {
-    name=$1
-    profile=${2:-$default_profile}
-    image=${3:-$default_image}
+    local default_image=ubuntu:22.04
+    local default_profile=ssh
+    local name=$1
+    local profile=${2:-$default_profile}
+    local image=${3:-$default_image}
 
     lxc init $image -p $profile $name
 }
 
 function lxrun () {
-    name=$1
+    local name=$1
 
     lxc start $name && lxc console $name
 }
 
 function lxlist () {
     lxc list -c ns4tS
+}
+
+function lxproxyadd () {
+    local container=$1
+    local container_port=$2
+    local host_port=${3:-${2}}
+    local device_name=${container}-${container_port}
+    local container_address=$(lxc list -c n4 -f csv ${container} | grep eth0 | cut -d " " -f 1)
+
+    lxc config device add \
+         ${container} \
+         ${device_name} \
+         proxy \
+         listen=tcp:0.0.0.0:${host_port} \
+         connect=tcp:${container_address}:${container_port} 
+} 
+
+function lxproxyrm () {
+    local container=$1
+    local host_port=$2
+    local device_name=${container}-${host_port}
+
+    lxc config device remove \
+        ${container} \
+        ${device_name}
 }
