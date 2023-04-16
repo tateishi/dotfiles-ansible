@@ -1,0 +1,64 @@
+#! /bin/bash
+
+function qmnew() {
+    local default_template=9202
+    local default_size=10G
+    local volume=nvme-lvm
+    local default_gateway=10.11.1.1
+    local ipv6=auto
+
+    local default_cores=2
+    local default_memory=4096
+
+    local host_id=$1
+    local name=$3
+    local ipv4=$3
+    local cores=${4:-${default_cores}}
+    local memory=${5:-${default_memory}}
+
+
+    qm clone ${default_template} ${host_id} -name ${name}
+    qm resize ${host_id} scsi0 ${default_size}
+    qm set ${host_id} \
+        --ipconfig0 gw=${default_gateway},ip=${ipv4}/24,ip6=${ipv6} \
+        --cores ${cores} \
+        --memory ${memory}
+}
+
+
+function name_to_id () {
+    local name=$1
+
+    local id=$(qm list | grep --color=never ${name} | sed 's/[\t ]\+/\t/g' | cut -f 2)
+
+    echo $id
+}
+
+function print_id () {
+    local name=$1
+    local id=$(name_to_id $name)
+
+    echo $name "=" $id
+}
+
+function qmrun () {
+    local name=$1
+    local host_id=$(name_to_id $name)
+
+    qm start ${host_id} && qm terminal ${host_id}
+}
+
+function _qm_hosts () {
+    [ ${COMP_CWORD} -gt 1 ] && return 1
+
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local hosts=$(qm list | tail -n +2 | grep -v "VM " | sed 's/[\t ]\+/\t/g' | cut -f 3)
+
+    COMPREPLY=($(compgen -W "${hosts}" -- ${cur}))
+}
+
+function _set_qm_completions() {
+    complete -F _qm_hosts qmrun 
+}
+
+_set_qm_completions
