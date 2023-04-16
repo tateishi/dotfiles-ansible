@@ -4,6 +4,13 @@
 alias pd=pushd
 alias dirs='dirs -v'
 
+function godir () {
+    local where=$1
+
+    mkdir -p ${where}
+    cd ${where}
+}
+
 # ls
 alias ls='ls --color=always'
 
