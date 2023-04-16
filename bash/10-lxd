@@ -44,3 +44,18 @@ function lxproxyrm () {
         ${container} \
         ${device_name}
 }
+
+function _lxc_containers () {
+    [ ${COMP_CWORD} -gt 1 ] && return 1
+
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local containers=$(lxc list -c n -f csv)
+
+    COMPREPLY=($(compgen -W "${containers}" -- ${cur}))
+}
+
+function _set_lxc_completions() {
+    complete -F _lxc_containers lxrun lxproxyadd lxproxyrm
+}
+
+_set_lxc_completions
