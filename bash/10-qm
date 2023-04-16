@@ -11,7 +11,7 @@ function qmnew() {
     local default_memory=4096
 
     local host_id=$1
-    local name=$3
+    local name=$2
     local ipv4=$3
     local cores=${4:-${default_cores}}
     local memory=${5:-${default_memory}}
